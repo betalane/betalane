@@ -1,16 +1,48 @@
-xcodebuild -project GTHubApp.xcodeproj -scheme GTHubApp-Dev -destination generic/platform=iOS archive -archivePath $PWD/build/CLI.xcarchive PROVISIONING_PROFILE="e9890938-67cd-4e01-a197-7a43c2e355a4" 
+# Installation
 
-xcodebuild -exportArchive -archivePath $PWD/build/CLI.xcarchive -exportOptionsPlist exportOptions.plist -exportPath $PWD/build PROVISIONING_PROFILE="e9890938-67cd-4e01-a197-7a43c2e355a4"
+```sh
+[sudo] npm i betalane -g
+```
 
-72QNZQDWV7
+# Setup
 
-<key>com.gtbank.gthub.dev</key>
-<string>Habari Dev</string>
+1. Create `betalane.json` on the root of your project.
+```
+.
+├── Example
+├── Example.xcodeproj
+└── betalane.json
+```
 
+2. Confgiure `lane` and `jobs` in `betalane.json` file as shown in the following example
 
-s3-cli put --acl-public build/Packaging.log s3://beta-apps-plist/builds/Packa.log
+```json
+[
+  {
+    "laneName": "beta",
+    "jobs": [ // Jobs Array - Perform Jobs in sync manner - One after another...
+      {
+        "action": "cli", // action name
+        "options": { // action options
+          "cmd": "cd GTHubApp && carthage update --platform iOS"
+        }
+      },
+      {
+        "action": "build", // action name
+        "options": { // action options
+          "scheme": "GTHubApp-Dev",
+          "provisioningProfile": "e9890938-67cd-4e01-a197-7a43c2e355a4"
+        }
+      }
+    ]
+  }
+]
+```
 
+# Execute.
 
-xcodebuild -exportArchive -archivePath $PWD/.betalane/GTHubApp.xcarchive -exportOptionsPlist $PWD/.betalane/exportOptions.plist -exportPath $PWD/.betalane\
+From the root of your project execute the following command 
 
-xcodebuild -project GTHubApp.xcodeproj -scheme GTHubApp-Dev -destination generic/platform=iOS archive -archivePath $PWD/build/CLI.xcarchive PROVISIONING_PROFILE="e9890938-67cd-4e01-a197-7a43c2e355a4"
+```sh
+betalane
+```
