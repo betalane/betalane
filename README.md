@@ -2,8 +2,9 @@ Highly inspired by [Fastlane.tools](https://fastlane.tools/) the greatest Automa
 
 # Features
 
-* `build` - Building your app
-* `cli` - Execute any cli command
+* [`build`](#) - Building your app
+* [`doa_s3`](#) - Distribute your app on the Air using AWS S3
+* [`cli`](#) - Execute any cli command
 
 # Getting Started
 
@@ -82,3 +83,32 @@ $ betalane beta
 ```shell
 $ betalane beta build
 ```
+
+# Documentation
+
+## `build` - Building your app
+
+```json
+{
+  "job": "build",
+  "options": {
+    "scheme": "Example-Dev",
+    "target": "Example",
+    "buildConfiguration": "Debug",
+    "method": "development",
+    "signingCertificate": "iOS Developer",
+    "compileBitcode": "NO",
+    "provisioningProfile": "e9890938-67cd-4e01-a197-7a43c2e355a4"
+  }
+}
+```
+
+### `options` : {
+  `scheme` - (Optional) Scheme, Default: `<Project Name>`
+  `target` - (Optional) Target, Default: `<Project Name>`
+  `buildConfiguration` - (Optional) Build Configuration, Default: `Debug`
+  `compileBitcode` - (Optional) Should complie BitCode?, Default: `NO`, Available options: `YES`, `NO`
+  `method` - (Optional) Should complie BitCode?, Default: `NO`, Available options: `app-store`, `ad-hoc`, `development`
+  `signingCertificate` - (Optional) Certificate, Default: Auto Selected from Build Setting
+  `provisioningProfile` - (Optional) Provisioning Profile, Default: Auto Selected from Build Settings, Available options: `Profile ID`, `Profile Name`
+### }
