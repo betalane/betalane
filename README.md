@@ -61,7 +61,7 @@ Add `.betalane` to your `.gitignore` file
 ]
 ```
 
-# Execute.
+# In action...
 
 From the root of your project execute the following command 
 ```sh
@@ -74,11 +74,11 @@ $ betalane
 ```
 
 ### Example 2 - excute specific `lane` and all it's `jobs`
-```sh
+```shell
 $ betalane beta
 ```
 
 ### Example 3 - excute specific `lane` and specific `job`
-```sh
+```shell
 $ betalane beta build
 ```
