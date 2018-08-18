@@ -3,8 +3,8 @@ Highly inspired by [Fastlane.tools](https://fastlane.tools/) the greatest Automa
 # Features
 
 * [`build`](#build---building-your-app) - Building your app
-* [`doa_s3`](#) - Distribute your app on the Air using AWS S3
-* [`cli`](#) - Execute any cli command
+* [`doa_s3`](#) - Distribute on the Air using AWS S3
+* [`cli`](#cli---execute-any-cli-command) - Execute any cli command
 
 # Getting Started
 
@@ -114,6 +114,72 @@ $ betalane beta build
 `signingCertificate` | (Optional) | Certificate | Auto Selected from Build Setting
 `provisioningProfile` | (Optional) | Provisioning Profile | Auto Selected from Build Settings | `Profile ID`, `Profile Name`
 ### }
+
+## `doa_s3` - Distribute on the Air using AWS S3
+```json
+{
+  "job": "doa_s3",
+  "options": {
+    "AccessKeyID": "AKXXXXXXXXXEXAMPLE",
+    "SecretAccessKey": "wJXXXXXXXXXX/K7XXXXXX/XXXXXXXEXAMPLEKEY",
+    "s3Bucket": "example-beta-builds",
+    "region": "us-east-2",
+    "prefix": "builds/ios/"
+  }
+}
+```
+
+### `options` : {
+  property | Optional | Description | Default | Available Options
+--- | --- | --- | --- | ---
+`AccessKeyID` | Required | AccessKeyID - Obtain from IAM
+`SecretAccessKey` | SecretAccessKey - Obtain from IAM
+`s3Bucket` | Required | AWS S3 Bucket Name
+`region` | Required | AWS S3 Bucket Region
+`prefix` | (Optional) | S3 Key Prefix | `betalane/`
+### }
+
+### IAM Policy Sample
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "StmtBetalaneS3Policy",
+      "Action": [
+        "s3:PutObject"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::example-beta-builds/*"
+    }
+  ]
+}
+```
+### Steps to create S3 bucket
+1. Login to [AWS Console](https://console.aws.amazon.com/console/home)
+2. Click on S3 service
+3. Create Bucket
+4. Enter "Bucket Name", Click "Next", "Next", "Next", "Cerate Bucket".
+
+### Steps to create IAM User
+
+1. Login to [AWS Console](https://console.aws.amazon.com/console/home)
+2. Click on IAM service
+3. Select Policies from left side menu
+4. Select "Create Policy"
+5. Click on "JSON" tab
+6. Replace JSON with above sample and change bucket name in `Resource` key
+7. Click "Review Policy"
+8. Name your policy, e.g. Example Beta Lane S3 Policy
+9. Click "Create Policy"
+10. Now select "Users" from left side menu
+11. Click "Add User"
+12. Give some "Username", and select "Programmatic access" from Access Type.
+13. Select "Attach Existing Policy"
+14. Look for the policy you just created and select it, Click "Next: Review"
+15. Review and Click "Create"
+16. Download CSV file containing your `AccessKeyID` and `SecretAccessKey`
 
 ## `cli` - Execute any cli command
 
