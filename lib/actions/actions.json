@@ -1,6 +1,0 @@
-[
-  "build",
-  "cli",
-  "update_version_number",
-  "distribute_on_aws_s3"
-]

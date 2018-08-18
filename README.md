@@ -19,6 +19,13 @@ xcode-select --install
 [sudo] npm i betalane -g
 ```
 
+Add `.betalane` to your `.gitignore` file
+
+```sh
+# Betalane processing directory
+.betalane
+```
+
 # Setup
 
 1. Create `betalane.json` on the root of your project.
@@ -37,13 +44,13 @@ xcode-select --install
     "laneName": "beta",
     "jobs": [
       {
-        "action": "cli",
+        "job": "cli",
         "options": {
           "cmd": "cd Example && carthage update --platform iOS"
         }
       },
       {
-        "action": "build",
+        "job": "build",
         "options": {
           "scheme": "Example-Dev",
           "provisioningProfile": "e9890938-67cd-4e01-a197-7a43c2e355a4"
@@ -57,7 +64,21 @@ xcode-select --install
 # Execute.
 
 From the root of your project execute the following command 
-
 ```sh
-betalane
+$ betalane [lane] [job]
+```
+
+### Example 1 - excute all `lanes` and all `jobs`
+```sh
+$ betalane
+```
+
+### Example 2 - excute specific `lane` and all it's `jobs`
+```sh
+$ betalane beta
+```
+
+### Example 3 - excute specific `lane` and specific `job`
+```sh
+$ betalane beta build
 ```
