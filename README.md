@@ -115,6 +115,12 @@ $ betalane beta build
 `provisioningProfile` | (Optional) | Provisioning Profile | Auto Selected from Build Settings | `Profile ID`, `Profile Name`
 ### }
 
+### Output Params
+  Params | Description | Sample Value
+--- | --- | ---
+BL_BUILD_ARCHIVE_PATH | Archive path | `/Users/jay.mehta/Example/.betalane/Example.xcarchive`
+BL_BUILD_IPA_PATH | IPA File path | `/Users/jay.mehta/Example/.betalane/Example-Dev.ipa`
+
 ## `doa_s3` - Distribute on the Air using AWS S3
 ```json
 {
@@ -124,7 +130,8 @@ $ betalane beta build
     "SecretAccessKey": "wJXXXXXXXXXX/K7XXXXXX/XXXXXXXEXAMPLEKEY",
     "s3Bucket": "example-beta-builds",
     "region": "us-east-2",
-    "prefix": "builds/ios/"
+    "prefix": "builds/ios/",
+    "buildPath" : "env.BL_BUILD_IPA_PATH"
   }
 }
 ```
@@ -137,6 +144,7 @@ $ betalane beta build
 `s3Bucket` | Required | AWS S3 Bucket Name
 `region` | Required | AWS S3 Bucket Region
 `prefix` | (Optional) | S3 Key Prefix | `betalane/`
+`buildPath` | (Optional) | Build Path to upload on S3 | `env.BL_BUILD_IPA_PATH` - Env variable exposed by `build` job
 ### }
 
 ### IAM Policy Sample

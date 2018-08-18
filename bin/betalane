@@ -10,6 +10,8 @@ require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 const fs = require('fs');
 const logger = require('../lib/helper/logger');
 const laneDriver = require('../lib/laneDriver');
+const pjson = require('../package.json');
+const _ = require('lodash');
 
 if (!fs.existsSync('./betalane.json')) {
   logger.error('Missing betalane.json file.');
@@ -26,24 +28,27 @@ try {
 }
 
 // logger.info(betalane);
+const program = require('commander');
 
-betalanes.forEach((lane, idx) => {
-  laneDriver.validateLane(lane, idx);
-  laneDriver.driveLane(lane, idx);
-});
+program
+  .version(pjson.version, '-v, --version')
+  .usage('[lane] [jobs...]')
+  .command('betalane [lane] [jobs...]');
 
-// var program = require('commander');
+program.parse(process.argv);
 
-// program
-//   .version('0.1.0', '-v, --version')
-//   .option('-p, --peppers', 'schema')
-//   .option('-P, --pineapple', 'Add pineapple')
-//   .option('-b, --bbq-sauce', 'Add bbq sauce')
-//   .option('-c, --cheese [type]', 'Add the specified type of cheese [marble]', 'marble')
-//   .parse(process.argv);
-
-// console.log('you ordered a pizza with:');
-// if (program.peppers) console.log('  - peppers');
-// if (program.pineapple) console.log('  - pineapple');
-// if (program.bbqSauce) console.log('  - bbq');
-// console.log('  - %s cheese', program.cheese);
+if (program.args && program.args[0]) {
+  const laneId = program.args.shift();
+  const lane = _.find(betalanes, { laneName: laneId });
+  if (lane) {
+    laneDriver.validateLane(lane, 0);
+    laneDriver.driveLane(lane, 0);
+  } else {
+    logger.error(`Could not find lane named: ${laneId}`);
+  }
+} else {
+  betalanes.forEach((lane, idx) => {
+    laneDriver.validateLane(lane, idx);
+    laneDriver.driveLane(lane, idx);
+  });
+}
