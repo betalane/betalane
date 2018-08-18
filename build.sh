@@ -1,1 +1,0 @@
-xcodebuild -project GTHubApp.xcodeproj -scheme GTHubApp-Dev -destination generic/platform=iOS archive -archivePath $PWD/build/CLI.xcarchive PROVISIONING_PROFILE="e9890938-67cd-4e01-a197-7a43c2e355a4"
