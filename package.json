@@ -1,6 +1,6 @@
 {
   "name": "betalane",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "`betalane` is super easy to use beta distribution tool for iOS",
   "main": "index.js",
   "scripts": {
