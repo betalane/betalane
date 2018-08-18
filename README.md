@@ -3,7 +3,7 @@ Highly inspired by [Fastlane.tools](https://fastlane.tools/) the greatest Automa
 # Features
 
 * [`build`](#build---building-your-app) - Building your app
-* [`doa_s3`](#) - Distribute on the Air using AWS S3
+* [`doa_s3`](#doa_s3---distribute-on-the-air-using-aws-s3) - Distribute on the Air using AWS S3
 * [`cli`](#cli---execute-any-cli-command) - Execute any cli command
 
 # Getting Started
@@ -133,7 +133,7 @@ $ betalane beta build
   property | Optional | Description | Default | Available Options
 --- | --- | --- | --- | ---
 `AccessKeyID` | Required | AccessKeyID - Obtain from IAM
-`SecretAccessKey` | SecretAccessKey - Obtain from IAM
+`SecretAccessKey` | Required | SecretAccessKey - Obtain from IAM
 `s3Bucket` | Required | AWS S3 Bucket Name
 `region` | Required | AWS S3 Bucket Region
 `prefix` | (Optional) | S3 Key Prefix | `betalane/`
