@@ -8,7 +8,7 @@ require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 
 
 const fs = require('fs');
-const logger = require('../helper/logger');
+const logger = require('../lib/helper/logger');
 const laneDriver = require('../lib/laneDriver');
 
 if (!fs.existsSync('./betalane.json')) {
