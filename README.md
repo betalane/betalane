@@ -104,11 +104,13 @@ $ betalane beta build
 ```
 
 ### `options` : {
-  `scheme` - (Optional) Scheme, Default: `<Project Name>`
-  `target` - (Optional) Target, Default: `<Project Name>`
-  `buildConfiguration` - (Optional) Build Configuration, Default: `Debug`
-  `compileBitcode` - (Optional) Should complie BitCode?, Default: `NO`, Available options: `YES`, `NO`
-  `method` - (Optional) Should complie BitCode?, Default: `NO`, Available options: `app-store`, `ad-hoc`, `development`
-  `signingCertificate` - (Optional) Certificate, Default: Auto Selected from Build Setting
-  `provisioningProfile` - (Optional) Provisioning Profile, Default: Auto Selected from Build Settings, Available options: `Profile ID`, `Profile Name`
+  property | Optional | Description | Default | Available Options
+--- | --- | --- | --- | ---
+`scheme` | (Optional) | Scheme | `<Project Name>`
+`target` | (Optional) | Target | `<Project Name>`
+`buildConfiguration` | (Optional) | Build Configuration | `Debug`
+`compileBitcode` | (Optional) | Should complie BitCode? | `NO` | `YES`, `NO`
+`method` | (Optional) | Distribution Method | `NO` | `app-store`, `ad-hoc`, `development`
+`signingCertificate` | (Optional) | Certificate | Auto Selected from Build Setting
+`provisioningProfile` | (Optional) | Provisioning Profile | Auto Selected from Build Settings | `Profile ID`, `Profile Name`
 ### }
