@@ -39,13 +39,13 @@ xcode-select --install
       {
         "action": "cli", // action name
         "options": { // action options
-          "cmd": "cd GTHubApp && carthage update --platform iOS"
+          "cmd": "cd Example && carthage update --platform iOS"
         }
       },
       {
         "action": "build", // action name
         "options": { // action options
-          "scheme": "GTHubApp-Dev",
+          "scheme": "Example-Dev",
           "provisioningProfile": "e9890938-67cd-4e01-a197-7a43c2e355a4"
         }
       }
