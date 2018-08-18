@@ -9,3 +9,6 @@ xcodebuild -exportArchive -archivePath $PWD/build/CLI.xcarchive -exportOptionsPl
 
 
 s3-cli put --acl-public build/Packaging.log s3://beta-apps-plist/builds/Packa.log
+
+
+xcodebuild -exportArchive -archivePath $PWD/.betalane/GTHubApp.xcarchive -exportOptionsPlist $PWD/.betalane/exportOptions.plist -exportPath $PWD/.betalane
