@@ -1,19 +1,20 @@
 const logger = require('./helper/logger');
 const fs = require('fs');
 const path = require('path');
+const async = require('async');
 
 const laneDriver = {};
 laneDriver.validateLane = (lane, index) => {
   const laneName = lane.laneName || index;
   const { jobs } = lane;
   if (!Array.isArray(jobs) || jobs.length <= 0) {
-    logger.error(`[Lane: "${laneName}"] - expects "jobs" array!`);
+    logger.error(`[lane: "${laneName}"] - expects "jobs" array!`);
     process.exit();
   } else {
     // Let's check all jobs are ok!
     jobs.forEach((job, idx) => {
       if (!job.action) {
-        logger.error(`[Lane: "${laneName}", Job: "${idx}"] - "action" key is missing!`);
+        logger.error(`[lane: "${laneName}", job: "${idx}"] - "action" key is missing!`);
         process.exit();
       }
 
@@ -27,7 +28,7 @@ laneDriver.validateLane = (lane, index) => {
         ));
 
       if (actionTypes.indexOf(job.action) < 0) {
-        logger.error(`[Lane: "${laneName}", Job: "${idx}"] - "action" is not valid!`);
+        logger.error(`[lane: "${laneName}", job: "${idx}", action: "${job.action}"] - "action" is not valid!`);
         process.exit();
       }
     });
@@ -36,8 +37,18 @@ laneDriver.validateLane = (lane, index) => {
 
 laneDriver.driveLane = (lane) => {
   const { jobs } = lane;
+  logger.info(jobs);
+  const series = [];
   jobs.forEach((job) => {
-    require(`./actions/${job.action}`)(lane, job);
+    // eslint-disable-next-line global-require, import/no-dynamic-require
+    series.push(() => {
+      require(`./actions/${job.action}`)(lane, job);
+    });
+  });
+
+  async.waterfall(series, (err) => {
+    if (!err) logger.info('All ok!');
+    else logger.error(err);
   });
 };
 

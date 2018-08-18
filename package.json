@@ -13,6 +13,7 @@
   "author": "Jay Mehta",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.6.1",
     "commander": "^2.17.1",
     "dotenv": "^6.0.0",
     "moment": "^2.22.2",
