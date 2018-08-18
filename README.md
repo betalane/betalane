@@ -35,16 +35,16 @@ xcode-select --install
 [
   {
     "laneName": "beta",
-    "jobs": [ // Jobs Array - Perform Jobs in sync manner - One after another...
+    "jobs": [
       {
-        "action": "cli", // action name
-        "options": { // action options
+        "action": "cli",
+        "options": {
           "cmd": "cd Example && carthage update --platform iOS"
         }
       },
       {
-        "action": "build", // action name
-        "options": { // action options
+        "action": "build",
+        "options": {
           "scheme": "Example-Dev",
           "provisioningProfile": "e9890938-67cd-4e01-a197-7a43c2e355a4"
         }
