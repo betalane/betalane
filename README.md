@@ -2,7 +2,7 @@ Highly inspired by [Fastlane.tools](https://fastlane.tools/) the greatest Automa
 
 # Features
 
-* [`build`](#) - Building your app
+* [`build`](#build---building-your-app) - Building your app
 * [`doa_s3`](#) - Distribute your app on the Air using AWS S3
 * [`cli`](#) - Execute any cli command
 
@@ -110,7 +110,24 @@ $ betalane beta build
 `target` | (Optional) | Target | `<Project Name>`
 `buildConfiguration` | (Optional) | Build Configuration | `Debug`
 `compileBitcode` | (Optional) | Should complie BitCode? | `NO` | `YES`, `NO`
-`method` | (Optional) | Distribution Method | `NO` | `app-store`, `ad-hoc`, `development`
+`method` | (Optional) | Distribution Method | `development` | `app-store`, `ad-hoc`, `development`
 `signingCertificate` | (Optional) | Certificate | Auto Selected from Build Setting
 `provisioningProfile` | (Optional) | Provisioning Profile | Auto Selected from Build Settings | `Profile ID`, `Profile Name`
+### }
+
+## `cli` - Execute any cli command
+
+```json
+{
+  "job": "cli",
+  "options": {
+    "cmd": "cd Example && carthage update --platform iOS"
+  }
+}
+```
+
+### `options` : {
+  property | Optional | Description | Default | Available Options
+--- | --- | --- | --- | ---
+`cmd` | Required | Command to be performed
 ### }
