@@ -20,12 +20,6 @@ xcode-select --install
 [sudo] npm i betalane -g
 ```
 
-Add `.betalane` to your `.gitignore` file
-
-```sh
-# Betalane processing directory
-.betalane
-```
 
 # Setup
 
@@ -60,6 +54,14 @@ Add `.betalane` to your `.gitignore` file
     ]
   }
 ]
+```
+
+
+3. Add `.betalane` to your `.gitignore` file
+
+```sh
+# Betalane processing directory
+.betalane
 ```
 
 # In action...

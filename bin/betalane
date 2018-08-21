@@ -27,7 +27,6 @@ try {
   process.exit();
 }
 
-// logger.info(betalane);
 const program = require('commander');
 
 program
