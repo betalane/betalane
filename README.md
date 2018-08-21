@@ -147,6 +147,13 @@ BL_BUILD_IPA_PATH | IPA File path | `/Users/jay.mehta/Example/.betalane/Example-
 `buildPath` | (Optional) | Build Path to upload on S3 | `env.BL_BUILD_IPA_PATH` - Env variable exposed by `build` job
 ### }
 
+### Output Params
+  Params | Description | Sample Value
+--- | --- | ---
+BL_DOA_S3_BUILD_URL | Build Url | `https://example-beta-builds.s3.amazonaws.com/doa-beta-20-Aug-2018-14-40-58/package.ipa`
+BL_DOA_S3_MANIFEST_URL | Menifest Url | `https://example-beta-builds.s3.amazonaws.com/doa-beta-20-Aug-2018-14-40-58/manifest.plist`
+BL_DOA_S3_INSTALL_URL | Installable Url | `https://example-beta-builds.s3.amazonaws.com/doa-beta-20-Aug-2018-14-40-58/download.html`
+
 ### IAM Policy Sample
 
 ```json
@@ -156,7 +163,8 @@ BL_BUILD_IPA_PATH | IPA File path | `/Users/jay.mehta/Example/.betalane/Example-
     {
       "Sid": "StmtBetalaneS3Policy",
       "Action": [
-        "s3:PutObject"
+        "s3:PutObject",
+        "s3:PutObjectAcl"
       ],
       "Effect": "Allow",
       "Resource": "arn:aws:s3:::example-beta-builds/*"
