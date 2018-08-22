@@ -33,7 +33,7 @@ xcode-select --install
 
 2. Confgiure `lane` and `jobs` in `betalane.json` file as shown in the following example
 
-```JSONasJs
+```javascript
 [
   {
     "laneName": "beta",
@@ -90,7 +90,7 @@ $ betalane beta build
 
 ## `build` - Building your app
 
-```JSONasJs
+```javascript
 {
   "job": "build",
   "options": {
@@ -124,7 +124,7 @@ BL_BUILD_ARCHIVE_PATH | Archive path | `/Users/jay.mehta/Example/.betalane/Examp
 BL_BUILD_IPA_PATH | IPA File path | `/Users/jay.mehta/Example/.betalane/Example-Dev.ipa`
 
 ## `doa_s3` - Distribute on the Air using AWS S3
-```JSONasJs
+```javascript
 {
   "job": "doa_s3",
   "options": {
@@ -158,7 +158,7 @@ BL_DOA_S3_INSTALL_URL | Installable Url | `https://example-beta-builds.s3.amazon
 
 ### IAM Policy Sample
 
-```JSONasJs
+```javascript
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -201,7 +201,7 @@ BL_DOA_S3_INSTALL_URL | Installable Url | `https://example-beta-builds.s3.amazon
 
 ## `cli` - Execute any cli command
 
-```JSONasJs
+```javascript
 {
   "job": "cli",
   "options": {
