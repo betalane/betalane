@@ -1,6 +1,6 @@
 {
   "name": "betalane",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "`betalane` is super easy to use beta distribution tool for iOS",
   "main": "./lib/laneDriver",
   "scripts": {
@@ -22,7 +22,6 @@
   "author": "Jay Mehta",
   "license": "MIT",
   "dependencies": {
-    "ascii-progress": "^1.0.5",
     "async": "^2.6.1",
     "aws-sdk": "^2.296.0",
     "cli-table2": "^0.2.0",
