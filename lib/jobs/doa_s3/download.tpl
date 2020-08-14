@@ -82,7 +82,7 @@
             </div>
             <div class="flex-item">
                 <h3 style="color: brown">{{appName}} - v{{versionNumber}}</h3>
-                <div style="color: black">{{description}}</div>
+                <div style="color: black; font-size: 12px;">{{description}}</div>
                 <a class="btn" type="button"
                     href="{{downloadLink}}" target="_blank">Download</a>
             </div>
