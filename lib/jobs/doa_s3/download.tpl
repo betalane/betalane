@@ -78,7 +78,7 @@
     <div class="flex-container">
         <div class="row">
             <div class="flex-item">
-                <img src="https://sa-betaapps-builds.s3.ap-south-1.amazonaws.com/sa_logo.png" alt="Solution Analysts" />
+                <img src="https://beta-apps.solutionanalysts.com/sa_logo.png" alt="Solution Analysts" />
             </div>
             <div class="flex-item">
                 <h3 style="color: brown">{{appName}} - v{{versionNumber}}</h3>
