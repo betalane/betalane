@@ -84,7 +84,7 @@
                 <h3 style="color: brown">{{appName}} - v{{versionNumber}}</h3>
                 <div style="color: black; font-size: 12px;font-weight: normal;text-align: left;">{{description}}</div>
                 <a class="btn" type="button"
-                    href="{{downloadLink}}" target="_blank">Download</a>
+                    href="{{downloadLink}}">Download</a>
             </div>
         </div>
     </div>
