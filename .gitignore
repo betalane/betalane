@@ -1,3 +1,4 @@
 node_modules
 .vscode
 betalane*.json
+.betalane
