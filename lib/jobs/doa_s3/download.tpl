@@ -80,7 +80,7 @@
             <div class="flex-item">
                 <img src="https://beta-apps.solutionanalysts.com/sa_logo.png" alt="Solution Analysts" />
             </div>
-            <div class="flex-item">
+            <div class="flex-item" style="max-width: 320px;overflow-wrap: anywhere;">
                 <h3 style="color: brown">{{appName}} - v{{versionNumber}}</h3>
                 <div style="color: black; font-size: 12px;font-weight: normal;text-align: left;">{{description}}</div>
                 <a class="btn" type="button"
