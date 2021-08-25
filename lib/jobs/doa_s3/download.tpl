@@ -6,11 +6,12 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
-    <meta name="description" content="Solution Analysts - Beta Apps">
+    <meta name="description" content="Seaflux - Beta Apps">
     <style>
         html,
         body {
             height: 100%;
+            color: #fff;
         }
 
         body {
@@ -74,15 +75,15 @@
     </style>
 </head>
 
-<body style="background-color: bisque">
+<body style="background-color: #00848A">
     <div class="flex-container">
         <div class="row">
             <div class="flex-item">
-                <img src="https://beta-apps.solutionanalysts.com/sa_logo.png" alt="Solution Analysts" />
+                <img src="https://www.seaflux.tech/assets/img/logo-white.svg" alt="Solution Analysts" />
             </div>
             <div class="flex-item" style="max-width: 320px;overflow-wrap: anywhere;">
-                <h3 style="color: brown">{{appName}} - v{{versionNumber}}</h3>
-                <div style="color: black; font-size: 12px;font-weight: normal;text-align: left;">{{description}}</div>
+                <h3>{{appName}} - v{{versionNumber}}</h3>
+                <div style="font-size: 12px;font-weight: normal;text-align: left;">{{description}}</div>
                 <a class="btn" type="button"
                     href="{{downloadLink}}">Download</a>
             </div>
