@@ -312,13 +312,7 @@
             vertical-align: middle;
         }
 
-        .mobile-only {
-            display: block;
-        }
-
-        .desktop-only {
-            display: none;
-        }
+        /* Removed .mobile-only and .desktop-only rules */
 
         @media (min-width: 769px) {
             .mobile-only {
@@ -396,7 +390,7 @@
             </div>
             
             <!-- Mobile Download Button -->
-            <a href="{{downloadLink}}" class="download-btn mobile-only" id="downloadBtn">
+            <a href="{{downloadLink}}" class="download-btn" id="downloadBtn">
                 <svg class="download-icon" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                 </svg>
@@ -404,7 +398,7 @@
             </a>
 
             <!-- Desktop Instructions -->
-            <div class="desktop-only">
+            <div id="desktopInstructions">
                 <div class="desktop-instructions">
                     <h3>
                         <svg class="iphone-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -432,7 +426,6 @@
         Download started in background! You can start testing the app as it gets installed.
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
     <!-- Fallback QR code library -->
     <script src="https://cdn.jsdelivr.net/npm/qr-scanner@1.4.2/qr-scanner.umd.min.js"></script>
     <script>
@@ -571,12 +564,19 @@
         function initializePage() {
             console.log('Initializing page, is mobile:', isMobileDevice());
             
+            const downloadBtn = document.getElementById('downloadBtn');
+            const desktopInstructions = document.getElementById('desktopInstructions');
+
             if (isMobileDevice()) {
                 setupMobileDownload();
+                if (downloadBtn) downloadBtn.style.display = 'inline-flex';
+                if (desktopInstructions) desktopInstructions.style.display = 'none';
             } else {
                 // Desktop - generate QR code
                 console.log('Setting up desktop view');
                 generateQRCode();
+                if (downloadBtn) downloadBtn.style.display = 'none';
+                if (desktopInstructions) desktopInstructions.style.display = 'block';
             }
         }
 

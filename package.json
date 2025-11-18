@@ -1,6 +1,6 @@
 {
   "name": "betalane",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "`betalane` is super easy to use beta distribution tool for iOS",
   "main": "./lib/laneDriver",
   "scripts": {
