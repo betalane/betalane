@@ -537,6 +537,22 @@
             }
         }
 
+        function isiPad() {
+            const userAgent = navigator.userAgent;
+            
+            // 1. Check for the legacy "iPad" string (for older iPadOS versions)
+            const isLegacyiPad = /iPad/i.test(userAgent);
+
+            // 2. Check for modern iPadOS spoofing (Mac User Agent + Touch Capabilities)
+            const isModerniPad = /Macintosh/i.test(userAgent) && 
+                                navigator.maxTouchPoints && 
+                                navigator.maxTouchPoints > 2;
+            
+            // (Note: The "ontouchend" check is an older alternative, maxTouchPoints is better)
+            
+            return isLegacyiPad || isModerniPad;
+        }
+
         // Detect if device is mobile or iOS device (iPhone/iPad)
         function isMobileDevice() {
             const userAgent = navigator.userAgent;
@@ -548,7 +564,7 @@
             const isSmallScreen = window.innerWidth <= 768;
             
             // Return true if it's iOS (regardless of screen size) or other mobile devices
-            return isIOS || isMobile || isSmallScreen;
+            return isiPad() || isIOS || isMobile || isSmallScreen;
         }
 
         // Initialize based on device type
