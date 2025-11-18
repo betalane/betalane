@@ -410,14 +410,14 @@
                         <svg class="iphone-icon" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M15.5 1h-8C6.12 1 5 2.12 5 3.5v17C5 21.88 6.12 23 7.5 23h8c1.38 0 2.5-1.12 2.5-2.5v-17C18 2.12 16.88 1 15.5 1zm-4 21c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.5-4H7V4h9v14z"/>
                         </svg>
-                        Open this URL on your iPhone
+                        Open this URL on your iPhone or iPad
                     </h3>
-                    <p>To download this iOS app, please open this page on your iPhone or scan the QR code below.</p>
+                    <p>To download this iOS app, please open this page on your iPhone or iPad, or scan the QR code below.</p>
                     
                     <div class="qr-container">
                         <div class="qr-code" id="qrCode"></div>
                         <div class="qr-instructions">
-                            Scan with your iPhone camera
+                            Scan with your iPhone or iPad camera
                         </div>
                     </div>
                 </div>
@@ -537,10 +537,18 @@
             }
         }
 
-        // Detect if device is mobile
+        // Detect if device is mobile or iOS device (iPhone/iPad)
         function isMobileDevice() {
-            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
-                   window.innerWidth <= 768;
+            const userAgent = navigator.userAgent;
+            // Check for iOS devices specifically (iPhone, iPad, iPod)
+            const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
+            // Check for other mobile devices
+            const isMobile = /Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+            // Check for small screens
+            const isSmallScreen = window.innerWidth <= 768;
+            
+            // Return true if it's iOS (regardless of screen size) or other mobile devices
+            return isIOS || isMobile || isSmallScreen;
         }
 
         // Initialize based on device type
