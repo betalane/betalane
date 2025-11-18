@@ -1,10 +1,13 @@
 Highly inspired by [Fastlane.tools](https://fastlane.tools/) the greatest Automation tool ever for your beta deployments of iOS/Android Builds, but `betalane` is purely made in Javascript and it's super easy to use! 
 
+### Version: 3.0.1
+
 # Features
 
 * [`build`](#build---building-your-app) - Building your app
 * [`doa_s3`](#doa_s3---distribute-on-the-air-using-aws-s3) - Distribute on the Air using AWS S3
 * [`cli`](#cli---execute-any-cli-command) - Execute any cli command
+* [`download_file`](#download_file---download-a-file-from-a-url) - Download a file from a URL
 
 # Getting Started
 
@@ -56,6 +59,10 @@ xcode-select --install
 ]
 ```
 
+### Project Structure
+
+*   `betalane.json`: This file defines your `lanes` and `jobs`. It's the core configuration for `betalane`.
+*   `lib/laneDriver.js`: This is the main entry point for `betalane` that orchestrates the execution of `lanes` and `jobs` defined in `betalane.json`.
 
 3. Add `.betalane` to your `.gitignore` file
 
@@ -124,6 +131,9 @@ BL_BUILD_ARCHIVE_PATH | Archive path | `/Users/jay.mehta/Example/.betalane/Examp
 BL_BUILD_IPA_PATH | IPA File path | `/Users/jay.mehta/Example/.betalane/Example-Dev.ipa`
 
 ## `doa_s3` - Distribute on the Air using AWS S3
+
+This job uploads your IPA to an S3 bucket and generates an installable HTML page that supports both iPhone and iPad devices.
+
 ```javascript
 {
   "job": "doa_s3",
@@ -215,3 +225,29 @@ BL_DOA_S3_INSTALL_URL | Installable Url | `https://example-beta-builds.s3.amazon
 --- | --- | --- | --- | ---
 `cmd` | Required | Command to be performed
 ### }
+
+## `download_file` - Download a file from a URL
+
+```javascript
+{
+  "job": "download_file",
+  "options": {
+    "url": "https://example.com/somefile.zip",
+    "filename": "my_download",
+    "ext": "zip"
+  }
+}
+```
+
+### `options` : {
+  property | Optional | Description | Default | Available Options
+--- | --- | --- | --- | ---
+`url` | Required | The URL of the file to download
+`filename` | (Optional) | The desired filename for the downloaded file | A UUID
+`ext` | (Optional) | The file extension for the downloaded file | `unknown`
+### }
+
+### Output Params
+  Params | Description | Sample Value
+--- | --- | ---
+BL_DOWNLOADED_FILE | Path to the downloaded file | `/Users/jay.mehta/Example/.betalane/my_download.zip`
