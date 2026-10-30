@@ -132,7 +132,10 @@ BL_BUILD_IPA_PATH | IPA File path | `/Users/jay.mehta/Example/.betalane/Example-
 
 ## `doa_s3` - Distribute on the Air using AWS S3
 
-This job uploads your IPA to an S3 bucket and generates an installable HTML page that supports both iPhone and iPad devices.
+This job uploads your build to an S3 bucket and generates an installable HTML page. Share the page link, or open it on a desktop and scan the QR code with a phone.
+
+* **iOS** - uploads an `.ipa` plus an install manifest. The page supports both iPhone and iPad.
+* **Android** - uploads an `.apk`. The page shows the app name and version read from the APK and downloads it as `<app-name>.apk`. Only APKs are supported, not `.aab` bundles.
 
 ```javascript
 {
@@ -143,10 +146,32 @@ This job uploads your IPA to an S3 bucket and generates an installable HTML page
     "s3Bucket": "example-beta-builds",
     "region": "us-east-2",
     "prefix": "builds/ios/",
-    "buildPath" : "env.BL_BUILD_IPA_PATH"
+    "buildPath" : "env.BL_BUILD_IPA_PATH",
+    "platform": "iOS"
   }
 }
 ```
+
+Android example (e.g. a Flutter APK; relative paths resolve from the directory you run `betalane` in):
+
+```javascript
+{
+  "job": "doa_s3",
+  "options": {
+    "AccessKeyID": "AKXXXXXXXXXEXAMPLE",
+    "SecretAccessKey": "wJXXXXXXXXXX/K7XXXXXX/XXXXXXXEXAMPLEKEY",
+    "s3Bucket": "example-beta-builds",
+    "region": "us-east-2",
+    "prefix": "builds/android/",
+    "buildPath": "env.BL_BUILD_APK_PATH",
+    "platform": "Android",
+    "appName": "App Name",
+    "fileName": "file name"
+  }
+}
+```
+
+A full sample config is in `betalane.android.example.json`. Run a single lane with `betalane <laneName>`; without a lane name every lane in the file runs.
 
 ### `options` : {
   property | Optional | Description | Default | Available Options
@@ -156,14 +181,18 @@ This job uploads your IPA to an S3 bucket and generates an installable HTML page
 `s3Bucket` | Required | AWS S3 Bucket Name
 `region` | Required | AWS S3 Bucket Region
 `prefix` | (Optional) | S3 Key Prefix | `betalane/`
+`platform` | Required | Platform of the build | | `iOS`, `Android`
 `buildPath` | (Optional) | Build Path to upload on S3 | `env.BL_BUILD_IPA_PATH` - Env variable exposed by `build` job
+`appName` | (Optional) | Android only. App name shown on the download page and used for the downloaded file name (`Centurion Dev` -> `centurion-dev.apk`) | Readable label from the APK, otherwise the last part of the package name
+`description` | (Optional) | Text shown on the download page
+`filename` | (Optional) | Fixed name for the S3 folder and files instead of a random UUID
 ### }
 
 ### Output Params
   Params | Description | Sample Value
 --- | --- | ---
 BL_DOA_S3_BUILD_URL | Build Url | `https://example-beta-builds.s3.amazonaws.com/doa-beta-20-Aug-2018-14-40-58/package.ipa`
-BL_DOA_S3_MANIFEST_URL | Menifest Url | `https://example-beta-builds.s3.amazonaws.com/doa-beta-20-Aug-2018-14-40-58/manifest.plist`
+BL_DOA_S3_MANIFEST_URL | Menifest Url (iOS only) | `https://example-beta-builds.s3.amazonaws.com/doa-beta-20-Aug-2018-14-40-58/manifest.plist`
 BL_DOA_S3_INSTALL_URL | Installable Url | `https://example-beta-builds.s3.amazonaws.com/doa-beta-20-Aug-2018-14-40-58/download.html`
 
 ### IAM Policy Sample
