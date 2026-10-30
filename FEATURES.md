@@ -5,7 +5,7 @@ Here are some potential features to enhance the `betalane` platform's capabiliti
 ## 1. Enhanced Android Support
 
 *   **Android Build Job**: Implement a dedicated `build_android` job that can compile Android applications (APK/AAB) using Gradle, similar to how the current `build` job handles iOS.
-*   **Android Distribution**: Extend the `doa_s3` job or create a new job to handle the distribution of Android APK/AAB files, including generating a download page for Android devices.
+*   **Android Distribution** *(APK done)*: The `doa_s3` job uploads Android APKs (`"platform": "Android"`) and generates a download page with a QR code. Still open: AAB support.
 
 ## 2. Integrations with Other Distribution Platforms
 
